@@ -20,7 +20,7 @@ export default function ConfigPage() {
             const { data, error } = await supabase
                 .from('app_config')
                 .select('*')
-                .single(); // Assuming single row for config
+                .single();
 
             if (error) throw error;
             setConfig(data);
@@ -44,32 +44,32 @@ export default function ConfigPage() {
                 .eq('id', config.id);
 
             if (error) throw error;
-            alert('Configuration saved successfully');
+            alert('Configuración guardada exitosamente');
         } catch (error) {
             console.error('Error saving config:', error);
-            alert('Failed to save configuration');
+            alert('Error al guardar configuración');
         } finally {
             setSaving(false);
         }
     };
 
-    if (loading) return <div className="p-8 text-center text-gray-500">Loading settings...</div>;
+    if (loading) return <div className="p-8 text-center text-gray-500">Cargando configuración...</div>;
 
     return (
         <div className="max-w-2xl">
             <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                     <Settings className="text-gray-400" />
-                    Configuration
+                    Configuración
                 </h2>
-                <p className="text-gray-500">Global settings for salary and time calculations.</p>
+                <p className="text-gray-500">Ajustes globales para cálculos de salarios y tiempos.</p>
             </div>
 
             <div className="bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
                 <div className="space-y-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Overtime Rate Multiplier
+                            Multiplicador de Horas Extra
                         </label>
                         <div className="relative">
                             <input
@@ -81,12 +81,12 @@ export default function ConfigPage() {
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">x</span>
                         </div>
-                        <p className="text-xs text-gray-400 mt-2">Example: 1.5x means 50% extra for overtime hours.</p>
+                        <p className="text-xs text-gray-400 mt-2">Ejemplo: 1.5x significa 50% extra por hora extra.</p>
                     </div>
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-2">
-                            Vacation Percentage
+                            Porcentaje de Vacaciones
                         </label>
                         <div className="relative">
                             <input
@@ -98,7 +98,7 @@ export default function ConfigPage() {
                             />
                             <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 font-medium">%</span>
                         </div>
-                        <p className="text-xs text-gray-400 mt-2">Default: 0.0833 (8.33%) represents roughly 1 month salary per year (Aguinaldo).</p>
+                        <p className="text-xs text-gray-400 mt-2">Por defecto: 0.0833 (8.33%) representa aprox. 1 mes de salario por año (Aguinaldo/Vacaciones).</p>
                     </div>
 
                     <div className="pt-4 border-t border-gray-50">
@@ -108,7 +108,7 @@ export default function ConfigPage() {
                             className="flex items-center justify-center gap-2 w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-blue-200 shadow-md disabled:bg-blue-400"
                         >
                             <Save size={20} />
-                            {saving ? 'Saving...' : 'Save Configuration'}
+                            {saving ? 'Guardando...' : 'Guardar Configuración'}
                         </button>
                     </div>
                 </div>
