@@ -15,9 +15,9 @@ export const Sidebar: React.FC = () => {
 
     const links = [
         { name: 'Dashboard', href: '/', icon: LayoutGrid },
-        { name: 'Employees', href: '/employees', icon: Users },
-        { name: 'Time Tracking', href: '/time', icon: Clock },
-        { name: 'Configuration', href: '/config', icon: Settings },
+        { name: 'Empleados', href: '/employees', icon: Users },
+        { name: 'Control de Horas', href: '/time', icon: Clock },
+        { name: 'Configuración', href: '/config', icon: Settings },
     ];
 
     return (
@@ -32,7 +32,7 @@ export const Sidebar: React.FC = () => {
 
             {/* Nav */}
             <div className="px-4 py-2 flex-1">
-                <p className="px-4 text-xs font-medium text-gray-400 mb-2 uppercase tracking-wider">Menu</p>
+                <p className="px-4 text-xs font-medium text-gray-400 mb-2 uppercase tracking-wider">Menú</p>
                 <ul className="space-y-1">
                     {links.map((link) => {
                         const isActive = pathname === link.href;
@@ -41,8 +41,8 @@ export const Sidebar: React.FC = () => {
                                 <Link
                                     href={link.href}
                                     className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors ${isActive
-                                        ? 'bg-blue-50 text-blue-600'
-                                        : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                                            ? 'bg-blue-50 text-blue-600'
+                                            : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                                         }`}
                                 >
                                     <link.icon size={18} className={isActive ? 'text-blue-600' : 'text-gray-400'} />
@@ -62,23 +62,18 @@ export const Sidebar: React.FC = () => {
                             A
                         </div>
                         <div className="overflow-hidden">
-                            <p className="text-sm font-semibold text-gray-900 truncate">Admin User</p>
-                            <p className="text-xs text-gray-400">Restaurant Manager</p>
+                            <p className="text-sm font-semibold text-gray-900 truncate">Admin</p>
+                            <p className="text-xs text-gray-400">Gerente</p>
                         </div>
                     </div>
                     <button
                         onClick={async () => {
-                            // Import dynamically or pass supabase as prop if needed, 
-                            // but here we can rely on the client lib we created.
-                            // However, we are in a component file.
-                            // Let's assume we import the client at the top.
-                            // Actually, I need to add the import first.
                             const { supabase } = await import('@/lib/supabaseClient');
                             await supabase.auth.signOut();
                             window.location.reload();
                         }}
                         className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
-                        title="Sign Out"
+                        title="Cerrar Sesión"
                     >
                         <LogOut size={18} />
                     </button>
