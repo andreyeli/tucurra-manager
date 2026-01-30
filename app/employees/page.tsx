@@ -39,7 +39,7 @@ export default function EmployeesPage() {
     };
 
     const handleDelete = async (id: string) => {
-        if (!confirm('Are you sure you want to delete this employee?')) return;
+        if (!confirm('¿Estás seguro de que deseas eliminar este empleado?')) return;
 
         try {
             const { error } = await supabase
@@ -51,14 +51,14 @@ export default function EmployeesPage() {
             fetchEmployees();
         } catch (error) {
             console.error('Error deleting employee:', error);
-            alert('Failed to delete employee');
+            alert('Error al eliminar empleado');
         }
     };
 
     const handleSave = async () => {
         try {
             if (!currentEmployee.full_name || !currentEmployee.hourly_rate) {
-                alert('Name and Hourly Rate are required');
+                alert('El nombre y la tarifa por hora son requeridos');
                 return;
             }
 
@@ -91,7 +91,7 @@ export default function EmployeesPage() {
             fetchEmployees();
         } catch (error) {
             console.error('Error saving employee:', error);
-            alert('Failed to save employee');
+            alert('Error al guardar empleado');
         }
     };
 
@@ -99,8 +99,8 @@ export default function EmployeesPage() {
         <div>
             <div className="flex justify-between items-center mb-6">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-900">Employees</h2>
-                    <p className="text-gray-500">Manage your team members and rates.</p>
+                    <h2 className="text-2xl font-bold text-gray-900">Empleados</h2>
+                    <p className="text-gray-500">Gestiona los miembros de tu equipo y tarifas.</p>
                 </div>
                 <button
                     onClick={() => {
@@ -110,7 +110,7 @@ export default function EmployeesPage() {
                     className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
                 >
                     <Plus size={18} />
-                    Add Employee
+                    Agregar Empleado
                 </button>
             </div>
 
@@ -118,7 +118,7 @@ export default function EmployeesPage() {
             {isEditing && (
                 <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm mb-6 animate-in slide-in-from-top-2">
                     <div className="flex justify-between items-center mb-4">
-                        <h3 className="font-bold text-gray-900">{currentEmployee.id ? 'Edit Employee' : 'New Employee'}</h3>
+                        <h3 className="font-bold text-gray-900">{currentEmployee.id ? 'Editar Empleado' : 'Nuevo Empleado'}</h3>
                         <button onClick={() => setIsEditing(false)} className="text-gray-400 hover:text-gray-600">
                             <X size={20} />
                         </button>
@@ -126,17 +126,17 @@ export default function EmployeesPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Nombre Completo</label>
                             <input
                                 type="text"
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={currentEmployee.full_name || ''}
                                 onChange={e => setCurrentEmployee({ ...currentEmployee, full_name: e.target.value })}
-                                placeholder="Ex. John Doe"
+                                placeholder="Ej. Juan Pérez"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Hourly Rate ($)</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Tarifa por Hora (₡)</label>
                             <input
                                 type="number"
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -146,35 +146,35 @@ export default function EmployeesPage() {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Puesto</label>
                             <input
                                 type="text"
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={currentEmployee.job_title || ''}
                                 onChange={e => setCurrentEmployee({ ...currentEmployee, job_title: e.target.value })}
-                                placeholder="Ex. Chef"
+                                placeholder="Ej. Chef"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Departamento</label>
                             <input
                                 type="text"
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={currentEmployee.department || ''}
                                 onChange={e => setCurrentEmployee({ ...currentEmployee, department: e.target.value })}
-                                placeholder="Ex. Kitchen"
+                                placeholder="Ej. Cocina"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Estado</label>
                             <select
                                 className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 value={currentEmployee.status || 'ACTIVE'}
                                 onChange={e => setCurrentEmployee({ ...currentEmployee, status: e.target.value as any })}
                             >
-                                <option value="ACTIVE">Active</option>
-                                <option value="PROBATION">Probation</option>
-                                <option value="ON_BOARDING">On Boarding</option>
+                                <option value="ACTIVE">Activo</option>
+                                <option value="PROBATION">Prueba</option>
+                                <option value="ON_BOARDING">Inducción</option>
                             </select>
                         </div>
                     </div>
@@ -184,21 +184,21 @@ export default function EmployeesPage() {
                             onClick={() => setIsEditing(false)}
                             className="px-4 py-2 text-gray-500 hover:bg-gray-50 rounded-lg font-medium transition-colors"
                         >
-                            Cancel
+                            Cancelar
                         </button>
                         <button
                             onClick={handleSave}
                             className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors shadow-sm"
                         >
                             <Save size={18} />
-                            Save Employee
+                            Guardar Empleado
                         </button>
                     </div>
                 </div>
             )}
 
             {loading ? (
-                <div className="text-center py-12 text-gray-400">Loading employees...</div>
+                <div className="text-center py-12 text-gray-400">Cargando empleados...</div>
             ) : (
                 <EmployeeTable
                     employees={employees}
